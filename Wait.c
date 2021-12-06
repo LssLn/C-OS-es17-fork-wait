@@ -32,8 +32,9 @@ int main(){
 
     if(pid!=0){
         //questo codice viene eseguito solo dal padre
+        //esegue solo il padre (fork gli ritorna il pid generato che รจ >0 se tutto ok
         pid_t child_pid;
-        child_pid = wait(&stat_val); //è bloccante
+        child_pid = wait(&stat_val); //è bloccante, aspetta il figlio che termini, poi stat_val contiene il valore d'uscita
         //cioè fino a quando non finisce il child, non va avanti
         printf("Child has finished: PID %d\n",child_pid);
         if(WIFEXITED(stat_val)) //cio+ se !=0, cioè tutto normale
